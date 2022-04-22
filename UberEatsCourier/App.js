@@ -1,19 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, FlatList } from 'react-native';
-import orders from './assets/data/orders.json';
-import OrderItem from './src/components/OrderItem';
+import { StyleSheet, View } from 'react-native';
 import OrdersScreen from './src/screens/OrdersScreen';
+import OrdersDelivery from './src/screens/OrdersDelivery';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <FlatList
-        data={orders}
-        renderItem={({ item }) => <OrderItem order={item} />}
-      /> */}
-      <OrdersScreen />
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        {/* <OrdersScreen /> */}
+        <OrdersDelivery />
+        <StatusBar style="auto" />
+      </View>
+    </GestureHandlerRootView>
   );
 }
 
