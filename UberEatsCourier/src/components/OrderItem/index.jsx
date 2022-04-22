@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const OrderItem = ({ order }) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate('OrdersDeliveryScreen', { id: order.id })
+      }
+    >
       <View
         style={{
           flexDirection: 'row',
@@ -52,7 +60,7 @@ const OrderItem = ({ order }) => {
         </View>
       </View>
       <StatusBar style="auto" />
-    </View>
+    </Pressable>
   );
 };
 
