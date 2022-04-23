@@ -13,3 +13,5 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
+
+// 2:24

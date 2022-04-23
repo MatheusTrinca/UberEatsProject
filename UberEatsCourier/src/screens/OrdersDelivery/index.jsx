@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useRef, useMemo } from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { FontAwesome5 } from '@expo/vector-icons';
