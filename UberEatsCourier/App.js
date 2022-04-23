@@ -14,4 +14,4 @@ export default function App() {
   );
 }
 
-// 2:24
+// 2:39:30 -> Apareceu a Localizacao San Francisco (atual android)

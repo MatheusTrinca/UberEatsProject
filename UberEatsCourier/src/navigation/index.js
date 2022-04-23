@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="OrdersScreen" component={OrdersScreen} />
       <Stack.Screen name="OrdersDeliveryScreen" component={OrdersDelivery} />
     </Stack.Navigator>
