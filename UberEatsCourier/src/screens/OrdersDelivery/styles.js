@@ -52,4 +52,18 @@ export default StyleSheet.create({
     fontSize: 15,
     letterSpacing: 0.5,
   },
+  button: {
+    width: '90%',
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+    backgroundColor: '#3fc060',
+    paddingVertical: 20,
+    borderRadius: 15,
+    alignItems: 'center',
+  },
+  textButton: {
+    color: '#fff',
+    fontSize: 18,
+  },
 });

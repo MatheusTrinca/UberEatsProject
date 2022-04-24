@@ -1,18 +1,44 @@
-import { useMemo, useRef } from 'react';
-import { Text, View, FlatList, useWindowDimensions } from 'react-native';
+import { useMemo, useRef, useEffect, useState } from 'react';
+import {
+  Text,
+  View,
+  FlatList,
+  useWindowDimensions,
+  ActivityIndicator,
+} from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import OrderItem from '../../components/OrderItem';
 import orders from '../../../assets/data/orders.json';
 import MapView, { Marker } from 'react-native-maps';
 import { Entypo } from '@expo/vector-icons';
+import * as Location from 'expo-location';
 
 const OrdersScreen = () => {
   const bottomSheetRef = useRef(null);
+  const [driverLocation, setDriverLocation] = useState(null);
   const { width, height } = useWindowDimensions();
 
   const snapPoints = useMemo(() => ['12%', '95%'], []);
 
-  // AIzaSyCtnIrQHEFOYPWc3JYjNptJdj0kk2U0os0
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (!status === 'granted') {
+        console.log('Nonono');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync();
+      setDriverLocation({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+    })();
+  }, []);
+
+  if (!driverLocation) {
+    return <ActivityIndicator size={'large'} color="gray" />;
+  }
 
   return (
     <View style={{ backgroundColor: 'lightblue', flex: 1 }}>
@@ -20,6 +46,12 @@ const OrdersScreen = () => {
         style={{ width, height }}
         showsUserLocation={true}
         followsUserLocation={true}
+        initialRegion={{
+          latitude: driverLocation.latitude,
+          longitude: driverLocation.longitude,
+          latitudeDelta: 0.07,
+          longitudeDelta: 0.07,
+        }}
       >
         {orders.map((marker, index) => (
           <Marker
@@ -32,9 +64,9 @@ const OrdersScreen = () => {
             description={marker.Restaurant.address}
           >
             <View
-              style={{ backgroundColor: '#fff', padding: 3, borderRadius: 20 }}
+              style={{ backgroundColor: 'green', padding: 3, borderRadius: 20 }}
             >
-              <Entypo name="shop" size={24} color="green" />
+              <Entypo name="shop" size={24} color="white" />
             </View>
           </Marker>
         ))}

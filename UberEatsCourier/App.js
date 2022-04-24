@@ -13,5 +13,3 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
-
-// 2:39:30 -> Apareceu a Localizacao San Francisco (atual android)
