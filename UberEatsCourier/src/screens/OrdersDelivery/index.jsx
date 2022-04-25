@@ -194,7 +194,7 @@ const OrdersDelivery = () => {
         name="arrow-back-circle"
         size={45}
         color="black"
-        style={{ position: 'absoliute', top: 45, left: 35 }}
+        style={{ position: 'absolute', top: 45, left: 35 }}
       />
       <BottomSheet
         ref={bottomSheetRef}
